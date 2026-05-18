@@ -8,11 +8,25 @@ This repo is the executable companion. Clone it, copy `starter/` into your proje
 
 ---
 
+## Pick your path
+
+Most teams of 2 to 30 run one of three setups. Pick yours first.
+
+| Path | For | Start here |
+|------|-----|-----------|
+| **A. Cowork-only** | Marketing, sales, ops, finance, legal teams. No terminal users. | [`/cowork`](./cowork) |
+| **B. Mixed** | Devs on Claude Code + everyone else on Cowork. **Most teams of 2-30 in 2026.** | [`/mixed`](./mixed) |
+| **C. Claude Code only** | Engineering-led teams. Repo-first. | [`/starter`](./starter) (this is the default) |
+
+The big asymmetry: **Cowork is excluded from Anthropic's Audit Logs, Compliance API, Data Exports, and BAA** as of May 2026. If you're in a regulated industry, Cowork is disqualified for sensitive workloads. Put that work in Claude Code (which IS covered).
+
+---
+
 ## What's in here
 
 ```
 .
-├── starter/                     ← copy this into your team repo
+├── starter/                     ← Path C — copy this into your team repo (Claude Code)
 │   ├── .claude/
 │   │   ├── settings.json        ← deny rules, env vars, hook wiring
 │   │   ├── hooks/               ← 4 baseline hooks (block-destructive, require-approval, scan-secrets, audit-log)
@@ -23,9 +37,15 @@ This repo is the executable companion. Clone it, copy `starter/` into your proje
 │   │   ├── CODEOWNERS           ← route AI-edited paths to a human
 │   │   ├── workflows/ai-safety.yml  ← secrets + PII guard on every PR
 │   │   └── pull_request_template.md
-│   ├── .mcp.json.example        ← read-only MCP scaffold
+│   ├── .mcp.json.example        ← read-only MCP scaffold (pinned versions)
 │   └── CLAUDE.md.example        ← team rules template (< 200 lines)
-├── audit-checklist.md           ← 60-point quarterly audit
+├── cowork/                      ← Path A — Cowork-only governance kit
+│   ├── README.md
+│   ├── audit-checklist.md       ← 35-point quarterly audit (Cowork-scoped)
+│   └── starter-kit.md           ← process-only artifacts (Cowork has no commitable settings)
+├── mixed/                       ← Path B — mixed-team architecture + ops
+│   └── README.md                ← reference architecture, role-by-tool map, graduation path
+├── audit-checklist.md           ← 60-point quarterly audit (Claude Code side)
 ├── LICENSE                      ← MIT
 └── README.md
 ```
