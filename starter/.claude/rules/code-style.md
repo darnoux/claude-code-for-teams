@@ -13,7 +13,7 @@ description: Universal code style rules. Loaded every session.
 
 # Naming
 
-- Booleans: `isReady`, `hasAccess`, `shouldRetry` — not `ready`, `access`, `retry`.
+- Booleans: `isReady`, `hasAccess`, `shouldRetry`, not `ready`, `access`, `retry`.
 - Functions that return: verb + noun (`fetchUser`, `parsePayload`).
 - Functions that mutate: action + target (`addItem`, `clearCache`).
 

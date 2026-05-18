@@ -5,8 +5,11 @@
 
 set -euo pipefail
 
-PATH_BEING_WRITTEN=$(jq -r '.tool_input.file_path // ""')
-CONTENT=$(jq -r '.tool_input.content // .tool_input.new_string // ""')
+# Read stdin once. jq calls below process the captured input, since stdin
+# can only be consumed by the first jq call otherwise.
+INPUT=$(cat)
+PATH_BEING_WRITTEN=$(echo "$INPUT" | jq -r '.tool_input.file_path // ""')
+CONTENT=$(echo "$INPUT" | jq -r '.tool_input.content // .tool_input.new_string // ""')
 
 # Block writes to known secret-bearing files
 if echo "$PATH_BEING_WRITTEN" | grep -qE '\.(env|pem|key|credentials|p12|pfx)$'; then

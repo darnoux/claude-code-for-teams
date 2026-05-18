@@ -106,5 +106,5 @@ When a non-dev outgrows Cowork (signals: copy-pasting CC-style workflows manuall
 - **No native sync between Cowork Project Knowledge and CC `CLAUDE.md`.** Anthropic closed [#39051](https://github.com/anthropics/claude-code/issues/39051) as not planned. Workarounds are scripts.
 - **Unified audit logs across web/desktop/CLI** require an MCP gateway. Not built into Anthropic's offering.
 - **Cowork desktop Project sharing** is not yet released as of May 2026 (team sharing is "coming")
-- **Cost predictability under the new June 15, 2026 billing split** (first-party vs third-party tools) — heavy CC marketing teams have reported wide variance; no public benchmark for a 15-person team yet
+- **Cost predictability under the new June 15, 2026 billing split** (first-party vs third-party tools), heavy CC marketing teams have reported wide variance; no public benchmark for a 15-person team yet
 - **No published case study** of a 2-30 person non-tech-first team running both

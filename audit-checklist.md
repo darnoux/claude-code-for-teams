@@ -1,4 +1,8 @@
-# The 60-Point Quarterly Audit
+# The 60-Point Quarterly Audit (Claude Code side)
+
+> This is the **Claude Code-side** audit. If you're Cowork-only, run [`cowork/audit-checklist.md`](./cowork/audit-checklist.md) (35 points) instead. If you're a mixed team, run [`mixed/audit-checklist.md`](./mixed/audit-checklist.md) (40 points) which is the union of the two.
+
+
 
 Run this every quarter. Cross out what's drifted. Update.
 
@@ -26,7 +30,7 @@ Last run: ___________________
 - [ ] Dependabot alerts enabled
 - [ ] Dependabot security updates enabled
 - [ ] `ai-safety.yml` workflow active and green on every PR
-- [ ] Gitleaks pre-commit hook configured on every developer's machine
+- [ ] Gitleaks pre-commit hook configured on every user's machine
 - [ ] No `@latest` versions in `package.json`, `.mcp.json`, or any shell script
 - [ ] `CLAUDE_CODE_SUBPROCESS_ENV_SCRUB=1` set on every machine
 - [ ] `.env` in `.gitignore` verified

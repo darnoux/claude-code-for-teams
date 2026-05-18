@@ -18,9 +18,9 @@ Sources: [Anthropic privacy docs](https://privacy.claude.com/en/articles/8114513
 
 ## What's in this folder
 
-- `audit-checklist.md` — 35-point quarterly audit for Cowork-only orgs (skip the CC-specific items)
-- `starter-kit.md` — process-only artifacts you put in your admin docs (Cowork has no commitable settings)
-- `roster-template.md` — Project register, Connector register, knowledge inventory templates
+- `audit-checklist.md`, 35-point quarterly audit for Cowork-only orgs (skip the CC-specific items)
+- `starter-kit.md`, process-only artifacts you put in your admin docs (Cowork has no commitable settings)
+- `roster-template.md`, Project register, Connector register, knowledge inventory templates
 
 There's no `settings.json`, no `.claude/`, no `hooks/`. Cowork doesn't have a harness layer. Governance is admin-console + Connector policy + process discipline.
 
@@ -55,4 +55,4 @@ There's no `settings.json`, no `.claude/`, no `hooks/`. Cowork doesn't have a ha
 - Compliance contexts where you actively want to deny filesystem and shell access
 - 2-30 person teams with one ops/admin person, not a security engineer
 
-If you need filesystem isolation, managed CLAUDE.md, hook-based policy enforcement, branch-protection-tied review, or shell allowlists — **Cowork can't give you those.** Add Claude Code for the subset of users who need them.
+If you need filesystem isolation, managed CLAUDE.md, hook-based policy enforcement, branch-protection-tied review, or shell allowlists, **Cowork can't give you those.** Add Claude Code for the subset of users who need them.

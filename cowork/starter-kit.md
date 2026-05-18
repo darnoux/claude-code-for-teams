@@ -100,7 +100,7 @@ When a teammate suspects a prompt injection (the chat is doing something they di
 4. **Check Connector activity logs at the third party** (Slack, Notion, Gmail) for unexpected actions in the last hour
 5. **Notify Owner + Security**
 6. **Quarantine the source content** (the PDF, the URL, the Slack message) so other users don't trigger the same injection
-7. **Document in `memory/lessons.md`** equivalent — what triggered it, how it was caught, what we changed
+7. **Document in `memory/lessons.md`** equivalent, what triggered it, how it was caught, what we changed
 
 ---
 

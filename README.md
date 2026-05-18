@@ -26,7 +26,7 @@ The big asymmetry: **Cowork is excluded from Anthropic's Audit Logs, Compliance 
 
 ```
 .
-├── starter/                     ← Path C — copy this into your team repo (Claude Code)
+├── starter/                     ← Path C, copy this into your team repo (Claude Code)
 │   ├── .claude/
 │   │   ├── settings.json        ← deny rules, env vars, hook wiring
 │   │   ├── hooks/               ← 4 baseline hooks (block-destructive, require-approval, scan-secrets, audit-log)
@@ -39,12 +39,14 @@ The big asymmetry: **Cowork is excluded from Anthropic's Audit Logs, Compliance 
 │   │   └── pull_request_template.md
 │   ├── .mcp.json.example        ← read-only MCP scaffold (pinned versions)
 │   └── CLAUDE.md.example        ← team rules template (< 200 lines)
-├── cowork/                      ← Path A — Cowork-only governance kit
+├── cowork/                      ← Path A, Cowork-only governance kit
 │   ├── README.md
 │   ├── audit-checklist.md       ← 35-point quarterly audit (Cowork-scoped)
 │   └── starter-kit.md           ← process-only artifacts (Cowork has no commitable settings)
-├── mixed/                       ← Path B — mixed-team architecture + ops
-│   └── README.md                ← reference architecture, role-by-tool map, graduation path
+├── mixed/                       ← Path B, mixed-team architecture + ops
+│   ├── README.md                ← reference architecture, role-by-tool map, graduation path
+│   ├── audit-checklist.md       ← 40-point quarterly audit (mixed-team scoped)
+│   └── sync-strategies.md       ← 4 strategies for one-canonical-source across both tools
 ├── audit-checklist.md           ← 60-point quarterly audit (Claude Code side)
 ├── LICENSE                      ← MIT
 └── README.md
@@ -72,7 +74,7 @@ $EDITOR CLAUDE.md .github/CODEOWNERS .mcp.json
 chmod +x .claude/hooks/*.sh
 
 # 5. enable GitHub Rulesets on main (the gh command is in the playbook)
-# 6. commit, push, open a PR — let the team review the baseline
+# 6. commit, push, open a PR, let the team review the baseline
 ```
 
 The full 21-step setup, the rationale behind every config, the 60-point quarterly audit, and the role playbooks (founder, senior dev, junior, designer, marketer, sales, ops, legal, finance) live at:
@@ -87,11 +89,11 @@ It's not the folder tree.
 
 90% of "Claude Code for teams" content on the internet is folder-tree screenshots. The folder tree matters maybe 10% of the outcome. What matters more, in order:
 
-1. **Access control** — who can read which MCP, who can write
-2. **Version control** — branch protection, CODEOWNERS, signed commits
-3. **Hooks at the harness layer** — not prose in CLAUDE.md
-4. **Isolation per session** — the lethal trifecta defense
-5. **Permissions matrix** — what each user can run + see
+1. **Access control**, who can read which MCP, who can write
+2. **Version control**, branch protection, CODEOWNERS, signed commits
+3. **Hooks at the harness layer**, not prose in CLAUDE.md
+4. **Isolation per session**, the lethal trifecta defense
+5. **Permissions matrix**, what each user can run + see
 
 Blast radius is set at config time, not prompt time. Access control is the load-bearing wall.
 
@@ -99,10 +101,10 @@ Blast radius is set at config time, not prompt time. Access control is the load-
 
 ## The 4 outcomes you're shooting for
 
-1. **One shared repo** — everyone clones the same baseline
-2. **One shared memory** — lessons, customer dossiers, patterns, templates
-3. **Memory that compounds** — each `/retro` adds, nothing resets
-4. **Scoped access per user** — marketer ≠ junior ≠ CTO
+1. **One shared repo**, everyone clones the same baseline
+2. **One shared memory**, lessons, customer dossiers, patterns, templates
+3. **Memory that compounds**, each `/retro` adds, nothing resets
+4. **Scoped access per user**, marketer ≠ junior ≠ CTO
 
 The team gets smarter every week. The risk does not.
 
