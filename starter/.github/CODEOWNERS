@@ -1,0 +1,25 @@
+# CODEOWNERS — route AI-edited paths to a human reviewer
+# Paired with branch protection ruleset that requires CODEOWNERS review.
+# Last matching rule wins.
+
+# Default reviewers: anyone on the team
+*                       @your-org/team-leads
+
+# ---- AI-curated memory and rules (most sensitive) ----
+/CLAUDE.md              @your-cto-handle
+/.claude/               @your-cto-handle
+/memory/                @your-cto-handle
+/.cursor/               @your-cto-handle
+/.codex/                @your-cto-handle
+
+# ---- Infra and migrations ----
+/db/migrations/         @your-cto-handle @senior-eng-handle
+/infra/                 @your-cto-handle
+/.github/workflows/     @your-cto-handle
+/.github/CODEOWNERS     @your-cto-handle
+
+# ---- Secrets-adjacent ----
+.env.example            @your-cto-handle
+**/secrets.*            @your-cto-handle
+**/.mcp.json            @your-cto-handle
+**/.mcp.json.example    @your-cto-handle

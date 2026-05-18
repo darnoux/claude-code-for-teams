@@ -1,0 +1,65 @@
+# [YOUR TEAM] Operating Brain
+
+> The shared CLAUDE.md for the team. Keep this under 200 lines.
+> Anything longer goes in topic files linked from here.
+
+---
+
+## Identity
+
+We are [team / company]. We do [thing] for [audience]. Our stack is [list].
+
+## Communication rules
+
+- Direct, conversational, like talking to friends
+- Short punchy sentences mixed with longer explanatory ones
+- No em dashes anywhere (replace with comma or colon)
+- No Oxford commas
+- "You" throughout when talking to a reader
+
+## Code rules
+
+- Trunk-based development. No long-lived branches.
+- Conventional commits. Co-authored-by Claude is fine, kept on.
+- All migrations require a senior reviewer.
+- Tests in the same PR as the change. Not "tests in a follow-up."
+
+## Workflow
+
+1. Start every non-trivial task with `/plan`.
+2. Use `/research [topic]` for company / market intel.
+3. Use `/pr-review [PR-URL]` before requesting a human review.
+4. Append to `memory/lessons.md` whenever you correct Claude on something non-obvious.
+
+## Quality bar
+
+- Every section opener should lead with a real example or constraint, not a generic description.
+- If Claude is unsure, it should ask. Bias toward asking, not guessing.
+- Default to writing no comments in code. Only add when the WHY is non-obvious.
+
+## What NOT to do
+
+- No production-DB writes without a `require-approval.sh` prompt that a human acknowledges.
+- No `rm -rf`, no `git push --force`. Hooks will block. Don't argue with them.
+- No new MCP added without a CODEOWNERS review on `.mcp.json`.
+- No PII in `memory/customers/`. Company names and deal structure only.
+
+## Routing
+
+- Frontend code style: see `.claude/rules/frontend.md`
+- Backend code style: see `.claude/rules/backend.md`
+- Customer dossiers: `memory/customers/[slug]/profile.md`
+- Reusable patterns: `memory/patterns/`
+- Templates: `memory/templates/`
+- Lessons (append-only): `memory/lessons.md`
+
+## Tools we use (committed in .mcp.json)
+
+- GitHub MCP (read-only)
+- Supabase staging MCP (read-only)
+- Notion MCP (page-scoped, read content only)
+- Linear MCP (read-only)
+
+## When in doubt
+
+Read [docs.heyarnoux.com/teams](https://docs.heyarnoux.com/teams). Then ask a senior teammate.

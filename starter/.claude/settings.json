@@ -1,0 +1,91 @@
+{
+  "$schema": "https://docs.claude.com/schemas/claude-code-settings.json",
+
+  "permissions": {
+    "defaultMode": "default",
+
+    "allow": [
+      "Bash(npm run lint)",
+      "Bash(npm run test*)",
+      "Bash(npm run build)",
+      "Bash(git status)",
+      "Bash(git diff*)",
+      "Bash(git log*)",
+      "Bash(git branch*)",
+      "Bash(ls*)",
+      "WebFetch(domain:docs.claude.com)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:modelcontextprotocol.io)"
+    ],
+
+    "ask": [
+      "Bash(git push*)",
+      "Bash(git commit*)",
+      "Bash(gh pr create*)",
+      "Bash(gh pr merge*)",
+      "Bash(npm install*)",
+      "Edit(.env*)",
+      "Edit(.mcp.json)",
+      "Edit(.github/workflows/**)"
+    ],
+
+    "deny": [
+      "Bash(rm -rf*)",
+      "Bash(rm -fr*)",
+      "Bash(sudo*)",
+      "Bash(curl*)",
+      "Bash(wget*)",
+      "Bash(npm publish*)",
+      "Bash(git push --force*)",
+      "Bash(git push -f*)",
+      "Bash(git reset --hard*)",
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(./secrets/**)",
+      "Read(./credentials/**)",
+      "Read(**/*.pem)",
+      "Read(**/*.key)"
+    ]
+  },
+
+  "env": {
+    "CLAUDE_CODE_DISABLE_FAST_MODE": "1",
+    "CLAUDE_CODE_SUBPROCESS_ENV_SCRUB": "1",
+    "CLAUDE_CODE_SUBPROCESS_ENV_ALLOWLIST": "PATH,HOME,USER,SHELL,LANG,TERM,NODE_ENV",
+    "CLAUDE_CODE_MCP_ALLOWLIST_ENV": "1",
+    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1"
+  },
+
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          { "type": "command", "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/block-destructive.sh" }
+        ]
+      },
+      {
+        "matcher": "mcp__.*",
+        "hooks": [
+          { "type": "command", "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/require-approval.sh" }
+        ]
+      },
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          { "type": "command", "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/scan-write-for-secrets.sh" }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": ".*",
+        "hooks": [
+          { "type": "command", "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/audit-log.sh" }
+        ]
+      }
+    ]
+  },
+
+  "includeCoAuthoredBy": true
+}

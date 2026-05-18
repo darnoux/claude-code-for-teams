@@ -1,0 +1,55 @@
+name: ai-safety
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+
+      - name: Gitleaks (secrets)
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: TruffleHog (verified secrets)
+        uses: trufflesecurity/trufflehog@main
+        with:
+          extra_args: --only-verified
+
+      - name: Guard CLAUDE.md / memory paths for committed secrets
+        run: |
+          BASE_REF="${{ github.event.pull_request.base.ref || 'main' }}"
+          CHANGED=$(git diff --name-only origin/$BASE_REF...HEAD 2>/dev/null || git diff --name-only HEAD~1 HEAD)
+          OFFENDERS=$(echo "$CHANGED" \
+            | grep -E '^(CLAUDE\.md|memory/|\.claude/)' \
+            | xargs -I{} grep -lE '(sk-[a-zA-Z0-9]{20,}|ghp_|AKIA[0-9A-Z]{16}|AIza[a-zA-Z0-9_-]{35})' {} 2>/dev/null || true)
+          if [ -n "$OFFENDERS" ]; then
+            echo "::error::secrets detected in brain files:"
+            echo "$OFFENDERS"
+            exit 1
+          fi
+
+      - name: Guard against @latest in .mcp.json
+        run: |
+          if [ -f .mcp.json ] && grep -E '"@[a-z0-9/_-]+@latest"' .mcp.json; then
+            echo "::error::.mcp.json uses @latest. Pin every MCP version."
+            exit 1
+          fi
+
+      - name: Guard against ANTHROPIC_API_KEY in committed files
+        run: |
+          if grep -rE 'ANTHROPIC_API_KEY\s*=\s*["'\''][^"'\''$\{]+["'\'']' --include="*.{json,yml,yaml,env,sh,js,ts,py}" . 2>/dev/null; then
+            echo "::error::ANTHROPIC_API_KEY hardcoded in a tracked file. Use env vars."
+            exit 1
+          fi

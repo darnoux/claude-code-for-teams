@@ -1,0 +1,53 @@
+{
+  "$schema": "https://docs.modelcontextprotocol.io/schemas/mcp.json",
+  "mcpServers": {
+
+    "filesystem": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem@2026.04.01", "${PWD}"]
+    },
+
+    "github": {
+      "command": "npx",
+      "args": [
+        "-y", "@modelcontextprotocol/server-github@0.6.2",
+        "--read-only"
+      ],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_PERSONAL_ACCESS_TOKEN}"
+      }
+    },
+
+    "supabase_staging": {
+      "command": "npx",
+      "args": [
+        "-y", "@supabase/mcp-server-supabase@2026.04.10",
+        "--read-only",
+        "--project-ref=YOUR_STAGING_PROJECT_REF",
+        "--features=database,docs"
+      ],
+      "env": {
+        "SUPABASE_ACCESS_TOKEN": "${SUPABASE_ACCESS_TOKEN}"
+      }
+    },
+
+    "notion": {
+      "command": "npx",
+      "args": ["-y", "@notionhq/notion-mcp-server@1.4.0"],
+      "env": {
+        "NOTION_API_KEY": "${NOTION_API_KEY}",
+        "_comment": "Use a Notion integration with 'Read content' scope only. Page-scope via the integration's Access tab."
+      }
+    },
+
+    "linear": {
+      "command": "npx",
+      "args": ["-y", "@linear/mcp-server@0.3.0"],
+      "env": {
+        "LINEAR_API_KEY": "${LINEAR_READ_ONLY_API_KEY}"
+      }
+    }
+  },
+
+  "_note": "Pin every version. Never use @latest. Run npm audit on this file before adding new MCPs."
+}

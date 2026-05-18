@@ -1,0 +1,26 @@
+# Local-only files (never committed)
+.env
+.env.*
+*.local
+.DS_Store
+
+# Personal Claude config — never share
+.claude/settings.local.json
+CLAUDE.local.md
+
+# Audit logs
+.claude/audit/
+~/.claude/audit/
+
+# OS / editor noise
+*.swp
+Thumbs.db
+.vscode/settings.json
+.idea/
+
+# Build artifacts
+node_modules/
+dist/
+build/
+.next/
+.cache/
